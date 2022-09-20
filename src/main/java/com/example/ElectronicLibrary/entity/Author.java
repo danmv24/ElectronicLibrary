@@ -3,6 +3,7 @@ package com.example.ElectronicLibrary.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "author")
@@ -15,5 +16,5 @@ public class Author {
     private String name;
 
     @OneToMany(mappedBy = "author")
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
 }
