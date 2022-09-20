@@ -2,10 +2,8 @@ package com.example.ElectronicLibrary.entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "author")
 @Data
@@ -16,4 +14,6 @@ public class Author {
 
     private String name;
 
+    @OneToMany(mappedBy = "library")
+    private List<Book> books;
 }
