@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "author")
+@Entity(name = "authors")
 @Data
 public class Author {
     @Id
