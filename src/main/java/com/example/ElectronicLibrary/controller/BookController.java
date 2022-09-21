@@ -16,7 +16,7 @@ public class BookController {
     @GetMapping("/addbook")
     public String getAddBookPage(Model model) {
         model.addAttribute("title", "Add Book");
-        return "addbook";
+        return "add_book";
     }
 
     @PostMapping("/addbook")
