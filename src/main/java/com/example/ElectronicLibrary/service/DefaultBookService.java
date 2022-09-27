@@ -1,6 +1,7 @@
 package com.example.ElectronicLibrary.service;
 
 import com.example.ElectronicLibrary.entity.BookEntity;
+import com.example.ElectronicLibrary.form.BookForm;
 import com.example.ElectronicLibrary.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

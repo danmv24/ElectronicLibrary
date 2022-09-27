@@ -1,4 +1,4 @@
-package com.example.ElectronicLibrary.service;
+package com.example.ElectronicLibrary.form;
 
 import lombok.Data;
 
