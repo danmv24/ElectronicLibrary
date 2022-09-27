@@ -4,7 +4,7 @@ import com.example.ElectronicLibrary.entity.AuthorEntity;
 import lombok.Data;
 
 @Data
-public class Book {
+public class BookForm {
 
     private Long id;
 

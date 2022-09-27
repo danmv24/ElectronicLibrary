@@ -3,7 +3,7 @@ package com.example.ElectronicLibrary.service;
 import lombok.Data;
 
 @Data
-public class Author {
+public class AuthorForm {
 
     private Long id;
 
