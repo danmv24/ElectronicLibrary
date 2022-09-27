@@ -1,6 +1,5 @@
 package com.example.ElectronicLibrary.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,8 +8,7 @@ import javax.persistence.*;
 @Entity(name = "books")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class Book {
+public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,8 +18,12 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private Author author;
+    private AuthorEntity author;
 
     @Column(nullable = false)
-    private byte[] book;
+    private String description;
+
+    @Column(nullable = false)
+    private byte[] data;
+
 }
