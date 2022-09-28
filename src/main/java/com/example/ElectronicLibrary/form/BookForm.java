@@ -1,16 +1,19 @@
 package com.example.ElectronicLibrary.form;
 
-import com.example.ElectronicLibrary.entity.AuthorEntity;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class BookForm {
 
     private Long id;
 
     private String title;
 
-    private AuthorEntity author;
+    private String authorName;
+
+    private String authorSurname;
 
     private String description;
 

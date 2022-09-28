@@ -1,5 +1,7 @@
 package com.example.ElectronicLibrary.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +10,8 @@ import javax.persistence.*;
 @Entity(name = "books")
 @Data
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
