@@ -17,5 +17,4 @@ public class BookForm {
 
     private String description;
 
-    private byte[] data;
 }
