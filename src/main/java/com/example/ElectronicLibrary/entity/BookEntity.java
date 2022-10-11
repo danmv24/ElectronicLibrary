@@ -27,7 +27,7 @@ public class BookEntity {
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
-    private byte[] data;
+//    @Column(nullable = false)
+//    private String link;
 
 }
