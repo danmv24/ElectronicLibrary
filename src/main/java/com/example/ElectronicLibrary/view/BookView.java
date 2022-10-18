@@ -1,10 +1,11 @@
 package com.example.ElectronicLibrary.view;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import lombok.*;
 
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 public class BookView {
 
     private Long id;
@@ -16,6 +17,4 @@ public class BookView {
     private String authorSurname;
 
     private String description;
-
-//    private String link;
 }

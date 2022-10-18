@@ -13,4 +13,6 @@ public interface BookService {
 
     BookView findBook(Long id);
 
+//    Long edit(BookForm bookForm ,Long id);
+
 }

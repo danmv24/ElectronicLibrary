@@ -15,13 +15,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class DefaultBookService implements BookService {
 
-    private MinioService minioService;
+    private DefaultMinioService defaultMinioService;
 
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
@@ -29,7 +30,7 @@ public class DefaultBookService implements BookService {
 
     @Override
     public Long save(BookForm bookForm, MultipartFile file) throws IOException {
-        minioService.uploadFile(file);
+        defaultMinioService.uploadFile(file);
 
         Optional<AuthorEntity> author = authorRepository.findByNameAndSurname(bookForm.getAuthorName(), bookForm.getAuthorSurname());
         if (author.isPresent()) {
@@ -38,6 +39,7 @@ public class DefaultBookService implements BookService {
             AuthorEntity authorEntity = authorRepository.save(AuthorMapper.toEntity(bookForm));
             return bookRepository.save(BookMapper.toEntity(bookForm, authorEntity)).getId();
         }
+
 
     }
 
@@ -49,6 +51,12 @@ public class DefaultBookService implements BookService {
         } else {
             throw new BookServiceException(HttpStatus.NOT_FOUND, "Book not found!");
         }
+
+    }
+
+
+    public void downloadBook(String filename) {
+        defaultMinioService.getFile(filename);
     }
 
 }

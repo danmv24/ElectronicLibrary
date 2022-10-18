@@ -21,7 +21,6 @@ public class BookMapper {
                 .description(bookEntity.getDescription())
                 .authorName(bookEntity.getAuthor().getName())
                 .authorSurname(bookEntity.getAuthor().getSurname())
-//                .link(bookEntity.getLink())
                 .build();
     }
 }
