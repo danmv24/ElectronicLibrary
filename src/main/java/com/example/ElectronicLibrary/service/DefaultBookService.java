@@ -14,27 +14,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class DefaultBookService implements BookService {
 
-    private DefaultMinioService defaultMinioService;
+    private final MinioService minioService;
 
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
 
 
     @Override
-    public Long save(BookForm bookForm, MultipartFile file) throws IOException {
-        defaultMinioService.uploadFile(file);
+    public Long save(BookForm bookForm, MultipartFile file) {
+        minioService.uploadFile(file);
 
-        Optional<AuthorEntity> author = authorRepository.findByNameAndSurname(bookForm.getAuthorName(), bookForm.getAuthorSurname());
-        if (author.isPresent()) {
-            return bookRepository.save(BookMapper.toEntity(bookForm, author.get())).getId();
+        Optional<AuthorEntity> authorOptional = authorRepository.findByNameAndSurname(bookForm.getAuthorName(), bookForm.getAuthorSurname());
+        if (authorOptional.isPresent()) {
+            return bookRepository.save(BookMapper.toEntity(bookForm, authorOptional.get())).getId();
         } else {
             AuthorEntity authorEntity = authorRepository.save(AuthorMapper.toEntity(bookForm));
             return bookRepository.save(BookMapper.toEntity(bookForm, authorEntity)).getId();
@@ -56,7 +54,27 @@ public class DefaultBookService implements BookService {
 
 
     public void downloadBook(String filename) {
-        defaultMinioService.getFile(filename);
+        minioService.getFile(filename);
+    }
+
+    @Override
+    public void edit(Long bookId, BookForm bookForm) {
+        Optional<BookEntity> bookOptional = bookRepository.findById(bookId);
+
+        if (bookOptional.isPresent()) {
+            AuthorEntity authorEntity = bookOptional.get().getAuthor();
+            authorEntity.setName(bookForm.getAuthorName());
+            authorEntity.setSurname(bookForm.getAuthorSurname());
+            authorRepository.save(authorEntity);
+
+            BookEntity bookEntity = bookOptional.get();
+            bookEntity.setTitle(bookForm.getTitle());
+            bookEntity.setDescription(bookForm.getDescription());
+            bookRepository.save(bookEntity);
+
+        } else {
+            throw new BookServiceException(HttpStatus.NOT_FOUND, "Book not found!!!");
+        }
     }
 
 }

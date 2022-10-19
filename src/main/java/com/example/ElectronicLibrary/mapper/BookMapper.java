@@ -17,6 +17,7 @@ public class BookMapper {
 
     public static BookView toView(BookEntity bookEntity) {
         return BookView.builder()
+                .id(bookEntity.getId())
                 .title(bookEntity.getTitle())
                 .description(bookEntity.getDescription())
                 .authorName(bookEntity.getAuthor().getName())
