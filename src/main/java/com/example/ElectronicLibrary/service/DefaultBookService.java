@@ -52,7 +52,6 @@ public class DefaultBookService implements BookService {
 
     }
 
-
     public void downloadBook(String filename) {
         minioService.getFile(filename);
     }
