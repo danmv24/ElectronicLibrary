@@ -1,6 +1,15 @@
 version: '3.7'
 
 services:
+#  postgres:
+#    image: postgres:13.3
+#    environment:
+#      POSTGRES_DB: "library"
+#      POSTGRES_USER: "danis"
+#      POSTGRES_PASSWORD: "danis"
+#    ports:
+#      - "5432:5432"
+
   minio:
     image: minio/minio:latest
     command: server --console-address ":9001" /data/
