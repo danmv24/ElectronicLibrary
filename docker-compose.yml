@@ -1,14 +1,26 @@
-version: '3.7'
+version: '3.9'
 
 services:
-#  postgres:
-#    image: postgres:13.3
-#    environment:
-#      POSTGRES_DB: "library"
-#      POSTGRES_USER: "danis"
-#      POSTGRES_PASSWORD: "danis"
-#    ports:
-#      - "5432:5432"
+  postgres:
+    image: "postgres:13.3"
+    container_name: "java-postgres"
+    environment:
+      POSTGRES_DB: "library"
+      POSTGRES_USER: "danis"
+      POSTGRES_PASSWORD: "danis"
+    ports:
+      - "5432:8888"
+
+
+  app:
+    build: ./
+    container_name: "springboot-app"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/library"
+    ports:
+      - "8000:8000"
+
+
 
   minio:
     image: minio/minio:latest
