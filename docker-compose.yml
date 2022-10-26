@@ -2,14 +2,14 @@ version: '3.9'
 
 services:
   postgres:
-    image: "postgres:13.3"
+    image: postgres:13.3
     container_name: "java-postgres"
     environment:
       POSTGRES_DB: "library"
       POSTGRES_USER: "danis"
       POSTGRES_PASSWORD: "danis"
     ports:
-      - "5432:8888"
+      - "5432:5432"
 
 
   app:
@@ -38,5 +38,3 @@ services:
       interval: 30s
       timeout: 20s
       retries: 3
-volumes:
-  minio-storage:
