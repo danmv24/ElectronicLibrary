@@ -3,11 +3,11 @@ version: '3.9'
 services:
   postgres:
     image: postgres:13.3
-    container_name: "java-postgres"
+    container_name: java-postgres
     environment:
-      POSTGRES_DB: "library"
-      POSTGRES_USER: "danis"
-      POSTGRES_PASSWORD: "danis"
+      POSTGRES_DB: library
+      POSTGRES_USER: danis
+      POSTGRES_PASSWORD: danis
     ports:
       - "5432:5432"
 
@@ -16,15 +16,24 @@ services:
     build: ./
     container_name: "springboot-app"
     environment:
-      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/library"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://java-postgres:5432/library"
+      MINIO_BUCKET_NAME: library
+      MINIO_DEFAULT_FOLDER: /
+      MINIO_ACCESS_NAME: danis
+      MINIO_ACCESS_SECRET: danis123
+      MINIO_URL:  http://minio-library:9000
     ports:
-      - "8000:8000"
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - minio
 
 
 
   minio:
     image: minio/minio:latest
     command: server --console-address ":9001" /data/
+    container_name: minio-library
     ports:
       - "9000:9000"
       - "9001:9001"
@@ -38,3 +47,7 @@ services:
       interval: 30s
       timeout: 20s
       retries: 3
+
+volumes:
+  postgresql-data:
+  minio-storage:
