@@ -24,15 +24,21 @@ public class BookController {
         return bookService.findBook(id);
     }
 
-    @GetMapping("/download/{bookname}")
+    @GetMapping("/{bookname}/download")
     public void getBook(@PathVariable(value = "bookname") String bookName) {
         bookService.downloadBook(bookName);
     }
 
-    @PutMapping("/edit/{book_id}")
+    @PutMapping("/{book_id}/edit")
     public void editBookInformation(@PathVariable(value = "book_id") Long bookId,
                                     @RequestPart("book") BookForm bookForm) {
         bookService.edit(bookId, bookForm);
+    }
+
+    @DeleteMapping("/{book_id}/{bookname}/delete")
+    public void deleteBook(@PathVariable(value = "book_id") Long bookId,
+                           @PathVariable(value = "bookname") String bookName) {
+        bookService.delete(bookId, bookName);
     }
 
 }
