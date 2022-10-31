@@ -3,6 +3,7 @@ package com.example.ElectronicLibrary.service;
 import io.minio.DownloadObjectArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
+import io.minio.RemoveObjectArgs;
 import io.minio.errors.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,6 +55,25 @@ public class DefaultMinioService implements MinioService {
         } catch (ErrorResponseException | InsufficientDataException | InternalException | InvalidKeyException |
                  InvalidResponseException | IOException | NoSuchAlgorithmException | ServerException |
                  XmlParserException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteFile(String filename) {
+        try {
+            minioClient.removeObject(RemoveObjectArgs.builder()
+                            .object(filename)
+                            .bucket(defaultBucketName)
+                    .build());
+        } catch (ErrorResponseException | InsufficientDataException | InternalException | InvalidResponseException |
+                 IOException | NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidKeyException e) {
+            throw new RuntimeException(e);
+        } catch (ServerException e) {
+            throw new RuntimeException(e);
+        } catch (XmlParserException e) {
             throw new RuntimeException(e);
         }
     }
