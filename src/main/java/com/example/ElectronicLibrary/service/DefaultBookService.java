@@ -95,4 +95,16 @@ public class DefaultBookService implements BookService {
         }
     }
 
+    @Override
+    public void delete(Long bookId, String filename) {
+        Optional<BookEntity> bookOptional = bookRepository.findById(bookId);
+
+        if (bookOptional.isPresent()) {
+            bookRepository.delete(bookOptional.get());
+            minioService.deleteFile(filename);
+        } else {
+            throw new BookServiceException(HttpStatus.NOT_FOUND, "Book or File not found!!!");
+        }
+    }
+
 }

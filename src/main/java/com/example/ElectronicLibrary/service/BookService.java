@@ -13,4 +13,6 @@ public interface BookService {
 
     void edit(Long bookId, BookForm bookForm);
 
+    void delete(Long bookId, String filename);
+
 }
