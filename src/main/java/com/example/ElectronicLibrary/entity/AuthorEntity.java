@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AuthorEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
