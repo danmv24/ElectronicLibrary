@@ -52,25 +52,6 @@ public class DefaultBookService implements BookService {
 
     }
 
-    public void test(Long bookId, BookForm bookForm) {
-        Optional<BookEntity> bookOptional = bookRepository.findById(bookId);
-
-        if (bookOptional.isPresent()) {
-            AuthorEntity authorEntity = bookOptional.get().getAuthor();
-            authorEntity.setName(bookForm.getAuthorName());
-            authorEntity.setSurname(bookForm.getAuthorSurname());
-            authorRepository.save(authorEntity);
-
-            BookEntity bookEntity = bookOptional.get();
-            bookEntity.setTitle(bookForm.getTitle());
-            bookEntity.setDescription(bookForm.getDescription());
-            bookRepository.save(bookEntity);
-
-        } else {
-            throw new BookServiceException(HttpStatus.NOT_FOUND, "Book not found!!!");
-        }
-    }
-
     public void downloadBook(String filename) {
         minioService.getFile(filename);
     }
@@ -97,13 +78,12 @@ public class DefaultBookService implements BookService {
 
     @Override
     public void delete(Long bookId, String filename) {
-        Optional<BookEntity> bookOptional = bookRepository.findById(bookId);
-
-        if (bookOptional.isPresent()) {
+        try {
+            Optional<BookEntity> bookOptional = bookRepository.findById(bookId);
             bookRepository.delete(bookOptional.get());
             minioService.deleteFile(filename);
-        } else {
-            throw new BookServiceException(HttpStatus.NOT_FOUND, "Book or File not found!!!");
+        } catch (BookServiceException e) {
+            System.err.println("Book or File not found!!!");
         }
     }
 
