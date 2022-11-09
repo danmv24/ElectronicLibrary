@@ -1,10 +1,12 @@
 package com.example.ElectronicLibrary.form;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class BookForm {
 
     private Long id;
