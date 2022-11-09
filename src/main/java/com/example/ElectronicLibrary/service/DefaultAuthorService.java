@@ -33,6 +33,7 @@ public class DefaultAuthorService implements AuthorService {
             for (int i = 0; i < books.size(); i++)
                 bookViews.add(BookMapper.toView(books.get(i)));
 
+
             return bookViews;
 
         } else {
