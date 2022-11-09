@@ -1,10 +1,13 @@
 package com.example.ElectronicLibrary.controller;
+
 import com.example.ElectronicLibrary.form.BookForm;
 import com.example.ElectronicLibrary.service.BookService;
 import com.example.ElectronicLibrary.view.BookView;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 
 @RestController
@@ -13,6 +16,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class BookController {
 
     private final BookService bookService;
+
+    @GetMapping
+    public List<BookView> getAllBooks() {
+        return bookService.findAllBooks();
+    }
 
     @PostMapping("/add")
     public Long addBook(@RequestPart("book")  BookForm bookForm, @RequestPart("file") MultipartFile file) {

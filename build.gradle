@@ -31,6 +31,10 @@ dependencies {
 	implementation("io.minio:minio:8.4.5")
 }
 
-tasks.named('test') {
+//tasks.named('test') {
+//	useJUnitPlatform()
+//}
+
+test {
 	useJUnitPlatform()
 }
