@@ -23,15 +23,15 @@ public class DefaultAuthorService implements AuthorService {
     @Override
     public List<BookView> findAllBooksByAuthor(Long id) {
         Optional<AuthorEntity> authorOptional = authorRepository.findById(id);
+
         if (authorOptional.isPresent()) {
             AuthorEntity author = authorOptional.get();
             List<BookEntity> books = author.getBooks();
 
             List<BookView> bookViews = new ArrayList<>();
 
-            for (int i = 0; i < books.size(); i++) {
+            for (int i = 0; i < books.size(); i++)
                 bookViews.add(BookMapper.toView(books.get(i)));
-            }
 
             return bookViews;
 
