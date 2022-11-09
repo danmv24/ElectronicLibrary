@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,6 +27,23 @@ public class DefaultBookService implements BookService {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
 
+
+    @Override
+    public List<BookView> findAllBooks() {
+//        Iterable<BookEntity> bookEntities = bookRepository.findAll();
+//        Iterator<BookEntity> iterator = bookEntities.iterator();
+//        while (iterator.hasNext()) {
+//        }
+        List<BookEntity> bookEntities = bookRepository.findAll();
+
+        List<BookView> bookViews = new ArrayList<>();
+
+        for (int i = 0; i < bookEntities.size(); i++) {
+            bookViews.add(BookMapper.toView(bookEntities.get(i)));
+        }
+
+        return bookViews;
+    }
 
     @Override
     public Long save(BookForm bookForm, MultipartFile file) {
