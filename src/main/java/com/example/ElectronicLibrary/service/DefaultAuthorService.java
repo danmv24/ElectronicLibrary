@@ -30,8 +30,8 @@ public class DefaultAuthorService implements AuthorService {
 
             List<BookView> bookViews = new ArrayList<>();
 
-            for (int i = 0; i < books.size(); i++)
-                bookViews.add(BookMapper.toView(books.get(i)));
+            for (BookEntity book : books)
+                bookViews.add(BookMapper.toView(book));
 
             return bookViews;
 

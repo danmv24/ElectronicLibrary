@@ -30,16 +30,12 @@ public class DefaultBookService implements BookService {
 
     @Override
     public List<BookView> findAllBooks() {
-//        Iterable<BookEntity> bookEntities = bookRepository.findAll();
-//        Iterator<BookEntity> iterator = bookEntities.iterator();
-//        while (iterator.hasNext()) {
-//        }
         List<BookEntity> bookEntities = bookRepository.findAll();
 
         List<BookView> bookViews = new ArrayList<>();
 
-        for (int i = 0; i < bookEntities.size(); i++) {
-            bookViews.add(BookMapper.toView(bookEntities.get(i)));
+        for (BookEntity bookEntity : bookEntities) {
+            bookViews.add(BookMapper.toView(bookEntity));
         }
 
         return bookViews;
