@@ -25,6 +25,7 @@ public class DefaultBookService implements BookService {
     private final MinioService minioService;
 
     private final BookRepository bookRepository;
+
     private final AuthorRepository authorRepository;
 
 
