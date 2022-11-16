@@ -21,7 +21,6 @@ public class AuthorEntity {
 
     private String surname;
 
-
     @OneToMany(mappedBy = "author", cascade=CascadeType.ALL)
     private List<BookEntity> books = new ArrayList<>();
 
