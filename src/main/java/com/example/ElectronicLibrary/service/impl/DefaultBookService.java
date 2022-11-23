@@ -1,4 +1,4 @@
-package com.example.ElectronicLibrary.service;
+package com.example.ElectronicLibrary.service.impl;
 
 import com.example.ElectronicLibrary.entity.AuthorEntity;
 import com.example.ElectronicLibrary.entity.BookEntity;
@@ -8,6 +8,8 @@ import com.example.ElectronicLibrary.mapper.AuthorMapper;
 import com.example.ElectronicLibrary.mapper.BookMapper;
 import com.example.ElectronicLibrary.repository.AuthorRepository;
 import com.example.ElectronicLibrary.repository.BookRepository;
+import com.example.ElectronicLibrary.service.BookService;
+import com.example.ElectronicLibrary.service.MinioService;
 import com.example.ElectronicLibrary.view.BookView;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,10 +33,6 @@ public class DefaultBookService implements BookService {
 
     @Override
     public List<BookView> findAllBooks() {
-//        Iterable<BookEntity> bookEntities = bookRepository.findAll();
-//        Iterator<BookEntity> iterator = bookEntities.iterator();
-//        while (iterator.hasNext()) {
-//        }
         List<BookEntity> bookEntities = bookRepository.findAll();
 
         List<BookView> bookViews = new ArrayList<>();
