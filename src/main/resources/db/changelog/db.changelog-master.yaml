@@ -9,8 +9,5 @@ databaseChangeLog:
       file: /changes/create_table_users.sql
       relativeToChangelogFile: true
   - include:
-      file: /changes/create_table_roles.sql
-      relativeToChangelogFile: true
-  - include:
-      file: /changes/create_table_user_role.sql
+      file: /changes/insert_into_table_users.sql
       relativeToChangelogFile: true
