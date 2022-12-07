@@ -1,10 +1,8 @@
 package com.example.ElectronicLibrary.entity;
 
 import lombok.*;
-import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity(name = "users")
 @AllArgsConstructor
@@ -26,10 +24,6 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<RoleEntity> roles;
+    private String role;
 
 }
