@@ -32,18 +32,18 @@ public class BookController {
         return bookService.findBook(id);
     }
 
-    @GetMapping("/{bookname}/download")
+    @GetMapping("/download/{bookname}")
     public void getBook(@PathVariable(value = "bookname") String bookName) {
         bookService.downloadBook(bookName);
     }
 
-    @PutMapping("/{book_id}/edit")
+    @PutMapping("/edit/{book_id}")
     public void editBookInformation(@PathVariable(value = "book_id") Long bookId,
                                     @RequestPart("book") BookForm bookForm) {
         bookService.edit(bookId, bookForm);
     }
 
-    @DeleteMapping("/{book_id}/{bookname}/delete")
+    @DeleteMapping("/delete/{book_id}/{bookname}")
     public void deleteBook(@PathVariable(value = "book_id") Long bookId,
                            @PathVariable(value = "bookname") String bookName) {
         bookService.delete(bookId, bookName);
