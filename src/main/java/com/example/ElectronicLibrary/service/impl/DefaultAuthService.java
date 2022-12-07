@@ -24,6 +24,7 @@ public class DefaultAuthService implements AuthService {
     private final PasswordEncoder passwordEncoder;
 
     private final TokenService tokenService;
+
     private final AuthenticationManager authenticationManager;
 
     private final UserRepository userRepository;
