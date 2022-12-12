@@ -19,6 +19,8 @@ public class DefaultUserDetails implements UserDetails {
 
     private String password;
 
+    private String role;
+
     public static DefaultUserDetails build(UserEntity user) {
         return UserMapper.toUserDetails(user);
     }
