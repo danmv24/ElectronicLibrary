@@ -1,6 +1,7 @@
 package com.example.ElectronicLibrary.service.impl;
 
 import com.example.ElectronicLibrary.entity.UserEntity;
+import com.example.ElectronicLibrary.exception.AuthException;
 import com.example.ElectronicLibrary.form.UserForm;
 import com.example.ElectronicLibrary.mapper.UserMapper;
 import com.example.ElectronicLibrary.repository.UserRepository;
@@ -8,6 +9,7 @@ import com.example.ElectronicLibrary.service.AuthService;
 import com.example.ElectronicLibrary.service.TokenService;
 import com.example.ElectronicLibrary.view.JwtView;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -33,6 +35,10 @@ public class DefaultAuthService implements AuthService {
 
     @Override
     public void create(UserForm userForm) {
+        if (userRepository.existsByUsername(userForm.getUsername()))
+            throw new AuthException(HttpStatus.BAD_REQUEST, "User with username "+userForm.getUsername()+
+                    " already exists");
+
         userRepository.save(UserMapper.toEntity(userForm, passwordEncoder.encode(userForm.getPassword())));
     }
 
