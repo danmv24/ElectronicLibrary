@@ -26,6 +26,11 @@ public class AuthController {
         return authService.authenticateUser(userForm);
     }
 
+    @PostMapping("/token/refresh")
+    public JwtView refreshToken(String refresh) {
+        return authService.refresh(refresh);
+    }
+
     @GetMapping("/all")
     public List<UserEntity> all() {
         return authService.all();
