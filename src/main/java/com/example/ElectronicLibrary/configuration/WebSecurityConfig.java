@@ -76,7 +76,9 @@ public class WebSecurityConfig {
                 .exceptionHandling()
                 .and()
                 .authorizeRequests(auth -> auth
-                        .mvcMatchers("/api/auth/**").permitAll()
+                        .mvcMatchers("/api/auth/login").permitAll()
+                        .mvcMatchers("/api/auth/signup").permitAll()
+                        .mvcMatchers("/api/auth/token/refresh").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(resourseServer -> resourseServer.jwt() )
