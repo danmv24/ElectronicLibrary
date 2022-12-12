@@ -29,6 +29,8 @@ public class DefaultAuthService implements AuthService {
 
     private final UserRepository userRepository;
 
+    private final DefaultUserDetailsService userDetailsService;
+
     @Override
     public void create(UserForm userForm) {
         userRepository.save(UserMapper.toEntity(userForm, passwordEncoder.encode(userForm.getPassword())));
@@ -43,6 +45,16 @@ public class DefaultAuthService implements AuthService {
 
         DefaultUserDetails userDetails = (DefaultUserDetails) auth.getPrincipal();
 
+        String accessToken = tokenService.generateAccessToken(userDetails);
+        String refreshToken = tokenService.generateRefreshToken(userDetails);
+
+        return new JwtView(accessToken, refreshToken);
+    }
+
+    @Override
+    public JwtView refresh(String refresh) {
+        String username = tokenService.parseToken(refresh);
+        DefaultUserDetails userDetails = (DefaultUserDetails) userDetailsService.loadUserByUsername(username);
         String accessToken = tokenService.generateAccessToken(userDetails);
         String refreshToken = tokenService.generateRefreshToken(userDetails);
 

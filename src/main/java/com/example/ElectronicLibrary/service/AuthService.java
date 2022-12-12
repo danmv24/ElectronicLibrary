@@ -9,7 +9,10 @@ import java.util.List;
 public interface AuthService {
 
     void create(UserForm userForm);
+
     JwtView authenticateUser(UserForm userForm);
+
+    JwtView refresh(String request);
 
     List<UserEntity> all();
 }
