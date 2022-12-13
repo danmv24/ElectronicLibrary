@@ -69,6 +69,6 @@ public class DefaultAuthService implements AuthService {
 
     @Override
     public List<UserEntity> all() {
-        return (List<UserEntity>) userRepository.findAll();
+        return userRepository.findAll();
     }
 }
