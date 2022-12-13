@@ -41,6 +41,10 @@ public class DefaultUserDetails implements UserDetails {
         return id;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     @Override
     public String getPassword() {
         return password;
