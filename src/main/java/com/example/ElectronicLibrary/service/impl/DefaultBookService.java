@@ -37,8 +37,8 @@ public class DefaultBookService implements BookService {
 
         List<BookView> bookViews = new ArrayList<>();
 
-        for (int i = 0; i < bookEntities.size(); i++) {
-            bookViews.add(BookMapper.toView(bookEntities.get(i)));
+        for (BookEntity bookEntity : bookEntities) {
+            bookViews.add(BookMapper.toView(bookEntity));
         }
 
         return bookViews;
