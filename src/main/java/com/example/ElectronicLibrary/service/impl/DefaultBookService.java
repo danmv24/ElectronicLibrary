@@ -87,7 +87,7 @@ public class DefaultBookService implements BookService {
             bookEntity.setTitle(bookForm.getTitle());
             bookEntity.setDescription(bookForm.getDescription());
 
-            authorRepository.save(authorEntity);
+            bookRepository.save(bookEntity);
 
         } else {
             throw new BookServiceException(HttpStatus.NOT_FOUND, "Book not found!!!");
