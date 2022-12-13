@@ -2,12 +2,12 @@ package com.example.ElectronicLibrary.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class AuthException extends RuntimeException {
+public class UserAlreadyExistsException extends RuntimeException {
     private String errorMessage;
 
     private HttpStatus errorCode;
 
-    public AuthException(HttpStatus errorCode, String errorMessage) {
+    public UserAlreadyExistsException(HttpStatus errorCode, String errorMessage) {
         super(errorMessage);
         this.errorMessage = errorMessage;
         this.errorCode = errorCode;

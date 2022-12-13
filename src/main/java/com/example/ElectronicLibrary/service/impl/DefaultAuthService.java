@@ -1,7 +1,7 @@
 package com.example.ElectronicLibrary.service.impl;
 
 import com.example.ElectronicLibrary.entity.UserEntity;
-import com.example.ElectronicLibrary.exception.AuthException;
+import com.example.ElectronicLibrary.exception.UserAlreadyExistsException;
 import com.example.ElectronicLibrary.form.UserForm;
 import com.example.ElectronicLibrary.mapper.UserMapper;
 import com.example.ElectronicLibrary.repository.UserRepository;
@@ -36,7 +36,7 @@ public class DefaultAuthService implements AuthService {
     @Override
     public void create(UserForm userForm) {
         if (userRepository.existsByUsername(userForm.getUsername()))
-            throw new AuthException(HttpStatus.BAD_REQUEST, "User with username "+userForm.getUsername()+
+            throw new UserAlreadyExistsException(HttpStatus.BAD_REQUEST, "User with username "+userForm.getUsername()+
                     " already exists");
 
         userRepository.save(UserMapper.toEntity(userForm, passwordEncoder.encode(userForm.getPassword())));
