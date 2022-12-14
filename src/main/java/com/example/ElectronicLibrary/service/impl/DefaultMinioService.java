@@ -1,5 +1,6 @@
-package com.example.ElectronicLibrary.service;
+package com.example.ElectronicLibrary.service.impl;
 
+import com.example.ElectronicLibrary.service.MinioService;
 import io.minio.DownloadObjectArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;

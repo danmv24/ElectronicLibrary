@@ -1,4 +1,4 @@
-package com.example.ElectronicLibrary.service;
+package com.example.ElectronicLibrary.service.impl;
 
 import com.example.ElectronicLibrary.entity.AuthorEntity;
 import com.example.ElectronicLibrary.entity.BookEntity;
@@ -8,6 +8,8 @@ import com.example.ElectronicLibrary.mapper.AuthorMapper;
 import com.example.ElectronicLibrary.mapper.BookMapper;
 import com.example.ElectronicLibrary.repository.AuthorRepository;
 import com.example.ElectronicLibrary.repository.BookRepository;
+import com.example.ElectronicLibrary.service.BookService;
+import com.example.ElectronicLibrary.service.MinioService;
 import com.example.ElectronicLibrary.view.BookView;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,7 @@ public class DefaultBookService implements BookService {
     private final MinioService minioService;
 
     private final BookRepository bookRepository;
+
     private final AuthorRepository authorRepository;
 
 
@@ -84,7 +87,7 @@ public class DefaultBookService implements BookService {
             bookEntity.setTitle(bookForm.getTitle());
             bookEntity.setDescription(bookForm.getDescription());
 
-            authorRepository.save(authorEntity);
+            bookRepository.save(bookEntity);
 
         } else {
             throw new BookServiceException(HttpStatus.NOT_FOUND, "Book not found!!!");

@@ -1,6 +1,7 @@
 package com.example.ElectronicLibrary.entity;
 
 import lombok.*;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
@@ -16,6 +17,7 @@ public class BookEntity {
     private Long id;
 
     @Column(nullable = false)
+    @NonNull
     private String title;
 
 
@@ -24,6 +26,7 @@ public class BookEntity {
     private AuthorEntity author;
 
     @Column(nullable = false)
+    @NonNull
     private String description;
 
 }

@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: /changes/create_table_authors.sql
+      relativeToChangelogFile: true
+  - include:
+      file: /changes/create_table_books.sql
+      relativeToChangelogFile: true
+  - include:
+      file: /changes/create_table_users.sql
+      relativeToChangelogFile: true
+  - include:
+      file: /changes/insert_into_table_users.sql
+      relativeToChangelogFile: true

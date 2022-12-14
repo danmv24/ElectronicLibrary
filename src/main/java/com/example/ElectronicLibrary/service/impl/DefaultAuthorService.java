@@ -1,10 +1,11 @@
-package com.example.ElectronicLibrary.service;
+package com.example.ElectronicLibrary.service.impl;
 
 import com.example.ElectronicLibrary.entity.AuthorEntity;
 import com.example.ElectronicLibrary.entity.BookEntity;
 import com.example.ElectronicLibrary.exception.AuthorNotFoundException;
 import com.example.ElectronicLibrary.mapper.BookMapper;
 import com.example.ElectronicLibrary.repository.AuthorRepository;
+import com.example.ElectronicLibrary.service.AuthorService;
 import com.example.ElectronicLibrary.view.BookView;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
