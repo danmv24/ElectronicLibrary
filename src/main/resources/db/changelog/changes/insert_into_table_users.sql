@@ -1,1 +1,1 @@
-INSERT INTO users(id, username, password, role) VALUES (1, 'danis', '$2a$12$EsN0P63h/mz1QFVN1cQAJunwD.p9kd2TXSgHTknmN2fs9hOAtS9Dm', 'ROLE_ADMIN');
+INSERT INTO users(username, password, role) VALUES ('danis', '$2a$12$EsN0P63h/mz1QFVN1cQAJunwD.p9kd2TXSgHTknmN2fs9hOAtS9Dm', 'ROLE_ADMIN');

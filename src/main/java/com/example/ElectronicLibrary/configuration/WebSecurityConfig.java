@@ -2,7 +2,6 @@ package com.example.ElectronicLibrary.configuration;
 
 import com.example.ElectronicLibrary.property.RsaProperties;
 import com.example.ElectronicLibrary.service.impl.DefaultTokenService;
-import com.example.ElectronicLibrary.service.impl.DefaultUserDetailsService;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -19,6 +18,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -35,7 +35,7 @@ public class WebSecurityConfig {
 
     private final RsaProperties rsaKeys;
 
-    private final DefaultUserDetailsService defaultUserDetailsService;
+    private final UserDetailsService defaultUserDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
