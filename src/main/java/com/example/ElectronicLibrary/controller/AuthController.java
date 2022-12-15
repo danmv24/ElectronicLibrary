@@ -5,7 +5,6 @@ import com.example.ElectronicLibrary.form.UserForm;
 import com.example.ElectronicLibrary.service.AuthService;
 import com.example.ElectronicLibrary.view.JwtView;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,7 +31,6 @@ public class AuthController {
         return authService.refresh(refresh);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/all")
     public List<UserEntity> all() {
         return authService.all();
