@@ -2,7 +2,10 @@ package com.example.ElectronicLibrary.controller;
 
 import com.example.ElectronicLibrary.entity.AuthorEntity;
 import com.example.ElectronicLibrary.entity.BookEntity;
+import com.example.ElectronicLibrary.mapper.BookMapper;
 import com.example.ElectronicLibrary.repository.BookRepository;
+import com.example.ElectronicLibrary.service.BookService;
+import com.example.ElectronicLibrary.view.BookView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,9 @@ class BookControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
+    private BookService bookService;
+
+    @MockBean
     private BookRepository bookRepository;
 
     private static final ObjectMapper om = new ObjectMapper();
@@ -43,17 +49,19 @@ class BookControllerTest {
     public void getAllBooks_Ok() throws Exception {
         List<BookEntity> bookEntities = new ArrayList<>(Arrays.asList(bookOne, bookTwo));
 
-//        List<BookView> bookViews = new ArrayList<>();
-//
-//        for (BookEntity bookEntity : bookEntities) {
-//            bookViews.add(BookMapper.toView(bookEntity));
-//        }
+        List<BookView> bookViews = new ArrayList<>();
 
-        when(bookRepository.findAll()).thenReturn(bookEntities);
+        for (BookEntity bookEntity : bookEntities) {
+            bookViews.add(BookMapper.toView(bookEntity));
+        }
+
+        when(bookService.findAllBooks()).thenReturn(bookViews);
+
 
         mockMvc.perform(get("/api/book")
                 .content(om.writeValueAsString(bookEntities))
                 .contentType(MediaType.APPLICATION_JSON)
+                        .header()
         )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1))
