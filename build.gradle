@@ -32,10 +32,6 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 }
 
-//tasks.named('test') {
-//	useJUnitPlatform()
-//}
-
 test {
 	useJUnitPlatform()
 }
