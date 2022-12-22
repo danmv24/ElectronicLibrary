@@ -61,7 +61,6 @@ class BookControllerTest {
         mockMvc.perform(get("/api/book")
                 .content(om.writeValueAsString(bookEntities))
                 .contentType(MediaType.APPLICATION_JSON)
-                        .header()
         )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1))
