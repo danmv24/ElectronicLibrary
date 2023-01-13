@@ -1,10 +1,7 @@
 package com.example.ElectronicLibrary.service;
 
-import com.example.ElectronicLibrary.entity.UserEntity;
 import com.example.ElectronicLibrary.form.UserForm;
 import com.example.ElectronicLibrary.view.JwtView;
-
-import java.util.List;
 
 public interface AuthService {
 
@@ -13,6 +10,4 @@ public interface AuthService {
     JwtView authenticateUser(UserForm userForm);
 
     JwtView refresh(String request);
-
-    List<UserEntity> all();
 }

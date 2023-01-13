@@ -1,13 +1,14 @@
 package com.example.ElectronicLibrary.controller;
 
-import com.example.ElectronicLibrary.entity.UserEntity;
 import com.example.ElectronicLibrary.form.UserForm;
 import com.example.ElectronicLibrary.service.AuthService;
 import com.example.ElectronicLibrary.view.JwtView;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -30,11 +31,5 @@ public class AuthController {
     public JwtView refreshToken(String refresh) {
         return authService.refresh(refresh);
     }
-
-    @GetMapping("/all")
-    public List<UserEntity> all() {
-        return authService.all();
-    }
-
 
 }

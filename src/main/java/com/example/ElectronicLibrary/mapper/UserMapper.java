@@ -4,6 +4,7 @@ import com.example.ElectronicLibrary.entity.UserEntity;
 import com.example.ElectronicLibrary.enums.Role;
 import com.example.ElectronicLibrary.form.UserForm;
 import com.example.ElectronicLibrary.service.impl.DefaultUserDetails;
+import com.example.ElectronicLibrary.view.UserView;
 
 
 public class UserMapper {
@@ -21,6 +22,14 @@ public class UserMapper {
                 .id(user.getId())
                 .username(user.getUsername())
                 .password(user.getPassword())
+                .role(user.getRole())
+                .build();
+    }
+
+    public static UserView toView(UserEntity user) {
+        return UserView.builder()
+                .id(user.getId())
+                .username(user.getUsername())
                 .role(user.getRole())
                 .build();
     }

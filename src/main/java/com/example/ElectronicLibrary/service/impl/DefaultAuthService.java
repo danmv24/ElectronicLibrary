@@ -1,6 +1,5 @@
 package com.example.ElectronicLibrary.service.impl;
 
-import com.example.ElectronicLibrary.entity.UserEntity;
 import com.example.ElectronicLibrary.exception.UserAlreadyExistsException;
 import com.example.ElectronicLibrary.form.UserForm;
 import com.example.ElectronicLibrary.mapper.UserMapper;
@@ -16,8 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -73,8 +70,4 @@ public class DefaultAuthService implements AuthService {
                 .build();
     }
 
-    @Override
-    public List<UserEntity> all() {
-        return userRepository.findAll();
-    }
 }

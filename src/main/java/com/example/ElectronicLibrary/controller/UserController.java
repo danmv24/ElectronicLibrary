@@ -1,11 +1,11 @@
 package com.example.ElectronicLibrary.controller;
 
 import com.example.ElectronicLibrary.service.UserService;
+import com.example.ElectronicLibrary.view.UserView;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -17,6 +17,11 @@ public class UserController {
     @PutMapping("/role/change/{id}")
     public void changeUserRole(@PathVariable(value = "id") Long id, String roleName) {
         userService.changeRole(id, roleName);
+    }
+
+    @GetMapping("/all")
+    public List<UserView> all() {
+        return userService.all();
     }
 
 }
