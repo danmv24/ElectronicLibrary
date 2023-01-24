@@ -1,4 +1,4 @@
-package com.example.ElectronicLibrary.property;
+package com.example.ElectronicLibrary.configuration;
 
 import lombok.Getter;
 import lombok.Setter;

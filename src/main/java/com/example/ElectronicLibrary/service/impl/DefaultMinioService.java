@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -68,20 +67,10 @@ public class DefaultMinioService implements MinioService {
                             .bucket(defaultBucketName)
                     .build());
         } catch (ErrorResponseException | InsufficientDataException | InternalException | InvalidResponseException |
-                 IOException | NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidKeyException e) {
-            throw new RuntimeException(e);
-        } catch (ServerException e) {
-            throw new RuntimeException(e);
-        } catch (XmlParserException e) {
+                 IOException | NoSuchAlgorithmException | InvalidKeyException | ServerException | XmlParserException e) {
             throw new RuntimeException(e);
         }
     }
 
-
-    @PostConstruct
-    public void init() {
-    }
 
 }

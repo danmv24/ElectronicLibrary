@@ -30,7 +30,9 @@ public class MinioConfig {
 
     @Bean
     @Primary
-    public MinioClient generateMinioClient() throws ServerException, InsufficientDataException, ErrorResponseException, IOException, NoSuchAlgorithmException, InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
+    public MinioClient generateMinioClient() throws ServerException, InsufficientDataException,
+            ErrorResponseException, IOException, NoSuchAlgorithmException,
+            InvalidKeyException, InvalidResponseException, XmlParserException, InternalException {
         MinioClient minioClient = new MinioClient.Builder().credentials(accessKey, accessSecret).endpoint(minioUrl).build();
 
         boolean isExist = minioClient.bucketExists(BucketExistsArgs.builder()

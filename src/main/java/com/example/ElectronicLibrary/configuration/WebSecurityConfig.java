@@ -1,6 +1,5 @@
 package com.example.ElectronicLibrary.configuration;
 
-import com.example.ElectronicLibrary.property.RsaProperties;
 import com.example.ElectronicLibrary.service.impl.DefaultTokenService;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
@@ -72,7 +71,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         return http
-                .csrf(csrf -> csrf.disable())
+                .csrf().disable()
                 .exceptionHandling()
                 .and()
                 .authorizeRequests(auth -> auth
@@ -81,7 +80,7 @@ public class WebSecurityConfig {
                         .mvcMatchers("/api/auth/token/refresh").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .oauth2ResourceServer(resourseServer -> resourseServer.jwt() )
+                .oauth2ResourceServer(resourseServer -> resourseServer.jwt())
                 .build();
     }
 

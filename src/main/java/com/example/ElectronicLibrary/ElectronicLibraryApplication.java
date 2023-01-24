@@ -1,6 +1,6 @@
 package com.example.ElectronicLibrary;
 
-import com.example.ElectronicLibrary.property.RsaProperties;
+import com.example.ElectronicLibrary.configuration.RsaProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
