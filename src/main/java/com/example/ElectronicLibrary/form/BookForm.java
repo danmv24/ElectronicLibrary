@@ -9,8 +9,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class BookForm {
 
-    private Long id;
-
     private String title;
 
     private String authorName;
