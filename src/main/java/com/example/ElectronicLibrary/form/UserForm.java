@@ -8,7 +8,6 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class UserForm {
-    private Long id;
 
     private String username;
 
