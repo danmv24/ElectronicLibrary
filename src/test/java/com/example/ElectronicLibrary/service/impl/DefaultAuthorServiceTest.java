@@ -64,18 +64,6 @@ class DefaultAuthorServiceTest {
         assertThat(bookViews).extracting(BookView::getDescription).contains("kjfnvk", "aaakjnfv");
         assertThat(bookViews).extracting(BookView::getAuthorName).contains("Теодор");
         assertThat(bookViews).extracting(BookView::getAuthorSurname).contains("Драйзер");
-
-
-//        assertThat(bookViews, contains(
-//                hasProperty("id", is(1L)),
-//                hasProperty("id", is(2L)),
-//                hasProperty("title", is("Финансист")),
-//                hasProperty("title", is("Титан")),
-//                hasProperty("description", is("kjfnvk")),
-//                hasProperty("description", is("aaakjnfv")),
-//                hasProperty("authorName", is("Теодор")),
-//                hasProperty("authorSurname", is("Драйзер"))
-//        ));
     }
 
 }

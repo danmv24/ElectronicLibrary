@@ -66,7 +66,7 @@ class DefaultBookServiceTest {
 
         bookId = 3L;
 
-        MockMultipartFile file = new MockMultipartFile("file", "book.pdf", "application/pdf", "content".getBytes());
+        file = new MockMultipartFile("file", "book.pdf", "application/pdf", "content".getBytes());
     }
 
     @Test
@@ -132,7 +132,13 @@ class DefaultBookServiceTest {
     @Test
     void editBook() {
         Long bookId = 3L;
-        BookForm bookForm = new BookForm("New Title", "New Name", "New Surname", "New desc");
+
+        BookForm bookForm = BookForm.builder()
+                .title("New Title")
+                .authorName("New Name")
+                .authorSurname("New Surname")
+                .description("New desc")
+                .build();
 
         when(bookRepository.findById(bookId)).thenReturn(Optional.of(bookEntity));
 

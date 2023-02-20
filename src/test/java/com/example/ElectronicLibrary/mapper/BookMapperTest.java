@@ -13,7 +13,13 @@ class BookMapperTest {
 
     @Test
     void testFormToEntity() {
-        BookForm bookForm = new BookForm("Финансист", "Теодор", "Драйзер", "jfnvkdf");
+        BookForm bookForm = BookForm.builder()
+                .title("Финансист")
+                .authorName("Теодор")
+                .authorSurname("Драйзер")
+                .description("jfnvkdf")
+                .build();
+
         AuthorEntity authorEntity = AuthorMapper.toEntity(bookForm);
         BookEntity bookEntity = BookMapper.toEntity(bookForm, authorEntity);
 
@@ -28,7 +34,19 @@ class BookMapperTest {
 
     @Test
     void testEntityToView() {
-        BookEntity bookEntity = new BookEntity(1L, "Странник по звёздам", new AuthorEntity(1L, "Джек", "Лондон", null), "skjfvnkdj");
+        AuthorEntity authorEntity = AuthorEntity.builder()
+                .id(1L)
+                .name("Джек")
+                .surname("Лондон")
+                .build();
+
+        BookEntity bookEntity = BookEntity.builder()
+                .id(1L)
+                .title("Странник по звёздам")
+                .author(authorEntity)
+                .description("skjfvnkdj")
+                .build();
+
         BookView bookView = BookMapper.toView(bookEntity);
 
         assertNotNull(bookView);
