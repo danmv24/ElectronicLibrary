@@ -20,10 +20,10 @@ import java.security.NoSuchAlgorithmException;
 public class DefaultMinioService implements MinioService {
 
     @Autowired
-    MinioClient minioClient;
+    private MinioClient minioClient;
 
     @Value("${minio.bucket.name}")
-    String defaultBucketName;
+    private String defaultBucketName;
 
 
     @Override
