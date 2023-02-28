@@ -17,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -41,6 +42,9 @@ class DefaultAuthServiceTest {
 
     @Mock
     private Authentication authentication;
+
+    @Mock
+    private DefaultUserDetailsService userDetailsService;
 
     private UserForm userForm;
 
@@ -101,6 +105,25 @@ class DefaultAuthServiceTest {
 
         assertEquals(accessToken, jwtView.getAccessToken());
         assertEquals(refreshToken, jwtView.getRefreshToken());
+    }
+
+    @Test
+    void testRefresh() {
+        String username = "username";
+        String refreshToken = "test_refresh_token";
+        String newRefreshToken = "new_refresh_token";
+        String newAccessToken = "new_access_token";
+
+        when(tokenService.parseToken(refreshToken)).thenReturn(username);
+        when(userDetailsService.loadUserByUsername(username)).thenReturn(defaultUserDetails);
+        when(tokenService.generateRefreshToken(defaultUserDetails)).thenReturn(newRefreshToken);
+        when(tokenService.generateAccessToken(defaultUserDetails)).thenReturn(newAccessToken);
+
+        JwtView result = authService.refresh(refreshToken);
+
+        assertThat(result).isNotNull();
+        assertEquals(result.getAccessToken(), newAccessToken);
+        assertEquals(result.getRefreshToken(), newRefreshToken);
     }
 
 }
