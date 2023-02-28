@@ -11,7 +11,7 @@ import lombok.Setter;
 @Builder
 public class JwtView {
 
-    private String accessToke;
+    private String accessToken;
 
     private String refreshToken;
 }

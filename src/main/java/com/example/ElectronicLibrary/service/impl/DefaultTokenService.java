@@ -6,12 +6,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 @AllArgsConstructor
+@Service
 public class DefaultTokenService implements TokenService {
 
     private final JwtEncoder jwtEncoder;

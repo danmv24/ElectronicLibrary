@@ -52,7 +52,7 @@ public class DefaultAuthService implements AuthService {
         String refreshToken = tokenService.generateRefreshToken(userDetails);
 
         return JwtView.builder()
-                .accessToke(accessToken)
+                .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
     }
@@ -65,7 +65,7 @@ public class DefaultAuthService implements AuthService {
         String refreshToken = tokenService.generateRefreshToken(userDetails);
 
         return JwtView.builder()
-                .accessToke(accessToken)
+                .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
     }
